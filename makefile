@@ -23,9 +23,9 @@ jstest: ./neopt-test.cpp
 	echo
 	em++ --version
 	@echo " ==== Compiling 'jstest.cpp' into './build/librarytest.js' ====== "
-
-run:
 	em++ -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/librarytest.js # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
+	
+run:
 	@echo
 	@echo "======= testing 'node_test.js' ======="
 	@echo
