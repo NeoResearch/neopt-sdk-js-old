@@ -16,24 +16,6 @@ let csBN = lt_csbn.csBigInteger;
 
 function testMain() {
     console.log(" ======== testMain() ====== ");
-    lNeo3._mytest(5);
-    console.log("");
-    console.log(" ------- will test string ---- ");
-    var shello = 'hello';
-    var str = myteststr(shello, shello.length);
-    console.log(str);
-    var str_cpp = lNeo3.my_cpp_teststr("Hello World!");
-    console.log(str_cpp);
-    console.log("");
-    console.log("");
-    console.log("");
-    var pubKey = lNeo3.cpp_Util_GenerateVectorByte(8, 2);
-    console.log(typeof(pubKey)); // console.log(
-    //
-    console.log(" ======= begin testing csBigInteger.js ======= ");
-    var x = new csBN(1000);
-    console.log(x.toByteArray());
-    console.log(" ======= end testing csBigInteger.js ======= ");
 
     // =============
     console.log("");

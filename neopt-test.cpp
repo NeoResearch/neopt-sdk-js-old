@@ -1,4 +1,4 @@
-#include <libcore-js/js_imports.hpp>
+#include "src/neo3-cpp-bindings/neo3-bindings.hpp"
 #include <neo3-cpp-core/core_imports.h>
 
 int
