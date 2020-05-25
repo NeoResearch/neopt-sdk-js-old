@@ -28,7 +28,7 @@ It will use `emscripten` (it can be from docker), output will be on `build` fold
 ### Push and Publish (with new version)
 `git push origin master --tags`
 
-`npm publish`
+`npm publish` (requires `npm login` before)
 
 ### Versioning Logic
 
