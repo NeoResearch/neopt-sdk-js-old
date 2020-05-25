@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "bn.js": "^4.11.8",
-    "webpack": "^4.43.0",
-    "neopt-lib-cpp": "file:build/neopt-lib-cpp"
+    "crypto-js": "^4.0.0",
+    "csBigInteger.js": "file:thirdparty/csBigInteger.js",
+    "neopt-lib-cpp": "file:build/neopt-lib-cpp",
+    "webpack": "^4.43.0"
   }
 }

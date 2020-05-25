@@ -7,7 +7,19 @@
 //const BN = require('bn.js');
 //
 // load neo3-cpp-core library dependency (wasm)
-const libNeo3 = require('neopt-lib-cpp');
+let libNeo3 = require('neopt-lib-cpp');
+
+//
+// "injecting" modules (TODO: improve)
+//
+const lt_bn = require('bn.js');
+libNeo3['BN'] = lt_bn.BN; 
+const lt_csbn = require('csBigInteger.js');
+libNeo3['csBN'] = lt_csbn.csBigInteger;
+let lt_cryptojs = require('crypto-js');
+libNeo3['CryptoJS'] = lt_cryptojs;
+//
+
 
 // function utils
 function assert(val, msg) {

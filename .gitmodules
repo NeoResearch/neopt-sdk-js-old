@@ -1,3 +1,6 @@
 [submodule "thirdparty/neo3-cpp-core"]
 	path = thirdparty/neo3-cpp-core
 	url = https://github.com/NeoResearch/neo3-cpp-core.git
+[submodule "thirdparty/csBigInteger.js"]
+	path = thirdparty/csBigInteger.js
+	url = https://github.com/NeoResearch/csBigInteger.js.git
