@@ -28,5 +28,5 @@ jobs:
       run: make vendor
 
     - name: Make
-      run: make
+      run: docker images
 
