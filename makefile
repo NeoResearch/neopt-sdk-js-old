@@ -18,17 +18,25 @@ NEO3_SRC=./thirdparty/neo3-cpp-core/src/
 
 
 jstest: ./neopt-test.cpp
-	mkdir -p build/
+	mkdir -p build/neopt-lib-cpp/
 	@echo "We need Emscripten to proceed (tested with 1.39.16)"
 	echo
 	em++ --version
-	@echo " ==== Compiling 'jstest.cpp' into './build/librarytest.js' ====== "
-	em++ -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/librarytest.js # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
+	@echo " ==== Compiling 'neopt-test.cpp' into './build/neopt-lib-cpp/neopt-lib.js' ====== "
+	em++ -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/neopt-lib-cpp/neopt-lib.js # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
+
 
 run:
 	@echo
 	@echo "======= testing 'node_test.js' ======="
 	@echo
+	@echo "creating package.json for subproject neopt-lib-cpp"
+	cp neopt-lib-package.json build/neopt-lib-cpp/package.json
+	@echo ""
+	@echo "installng neopt-lib-cpp locally"
+	npm install
+	@echo ""
+	@echo "REAL run now..."
 	node neopt_test.js
 
 vendor: update_submodules cpp_core_deps_js

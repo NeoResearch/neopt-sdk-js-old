@@ -5,6 +5,7 @@
 
 // storing internal information on javascript BN library
 //const BN = require('bn.js');
+const libNeo3 = require('neopt-lib.js');
 
 // function utils
 function assert(val, msg) {
