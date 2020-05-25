@@ -10,7 +10,7 @@ It will use `emscripten` (it can be from docker), output will be on `build` fold
 ### Install on browser
 
 ```html
-<script src="https://unpkg.com/neopt-sdk/dist/neopt-sdk.js"></script>
+<script src="https://unpkg.com/neopt-sdk/dist/src/neopt-sdk/Neo3.js"></script>
 ```
 
 
