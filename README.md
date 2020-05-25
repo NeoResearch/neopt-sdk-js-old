@@ -13,10 +13,10 @@ Soon we will add a nice example here ;)
 ## Practical Development Workflow
 
 ### Run tests
-`npm test`
+`make test` (instead of `npm test`)
 
 ### Build Webpack
-`npm run build`
+`make dist` (instead of `npm run build`)
 
 ### Increase minor version (typically)
 `npm version minor`

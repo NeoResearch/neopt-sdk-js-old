@@ -39,6 +39,16 @@ run:
 	@echo "REAL run now..."
 	node neopt_test.js
 
+dist:
+	@echo "We may need to comment the following line 96 in './build/neopt-lib-cpp/neopt-lib.js'"
+	@echo "//if (!nodeFS) nodeFS = require('fs');"
+	npm run build
+
+test:
+	npm test
+
+.PHONY: dist
+
 vendor: update_submodules cpp_core_deps_js
 	@echo "Finished 'make vendor' successfully"
 

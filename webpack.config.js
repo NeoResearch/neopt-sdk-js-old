@@ -1,10 +1,10 @@
 module.exports = {
   mode : 'production',
-  entry : './index.js',
+  entry : './src/neopt-sdk/index.js',
   output: {
     library: 'neopt-sdk',
     libraryTarget: 'umd',
-    filename: './Neo3.js',
+    filename: './src/neopt-sdk/Neo3.js',
     auxiliaryComment: 'Neo3 (Portable for all Things) SDK library'
   }
 };
