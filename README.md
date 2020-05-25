@@ -7,7 +7,11 @@ It will use `emscripten` (it can be from docker), output will be on `build` fold
 
 ## How to use
 
-Soon we will add a nice example here ;)
+### Install on browser
+
+```html
+<script src="https://unpkg.com/neopt-sdk/dist/neopt-sdk.js"></script>
+```
 
 
 ## Practical Development Workflow
