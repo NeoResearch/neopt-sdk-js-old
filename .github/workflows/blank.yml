@@ -28,5 +28,5 @@ jobs:
       run: make vendor
 
     - name: Make
-      run: docker images
+      run: docker run -v $(pwd):/src trzeci/emscripten make
 
