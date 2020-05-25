@@ -1,6 +1,6 @@
 {
   "name": "neopt-sdk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "neopt-sdk.js: Neo (Portable for all Things) SDK in JS",
   "main": "src/neopt-sdk/index.js",
   "scripts": {
