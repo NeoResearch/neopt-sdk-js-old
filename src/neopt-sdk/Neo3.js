@@ -5,7 +5,9 @@
 
 // storing internal information on javascript BN library
 //const BN = require('bn.js');
-const libNeo3 = require('neopt-lib.js');
+//
+// load neo3-cpp-core library dependency (wasm)
+const libNeo3 = require('neopt-lib-cpp');
 
 // function utils
 function assert(val, msg) {
