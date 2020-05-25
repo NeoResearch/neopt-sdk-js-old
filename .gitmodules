@@ -1,0 +1,3 @@
+[submodule "thirdparty/neo3-cpp-core"]
+	path = thirdparty/neo3-cpp-core
+	url = https://github.com/NeoResearch/neo3-cpp-core.git
