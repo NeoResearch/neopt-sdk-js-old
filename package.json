@@ -1,0 +1,32 @@
+{
+  "name": "neopt-sdk",
+  "version": "0.1.0",
+  "description": "neopt-sdk.js: Neo (Portable for all Things) SDK in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jest --coverage",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeoResearch/neopt-sdk.js.git"
+  },
+  "keywords": [
+    "neo",
+    "sdk"
+  ],
+  "author": "NeoResearch <neoresearch@no-email.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NeoResearch/neopt-sdk.js/issues"
+  },
+  "homepage": "https://github.com/NeoResearch/neopt-sdk.js#readme",
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "bn.js": "^4.11.8",
+    "webpack": "^4.43.0"
+  }
+}
