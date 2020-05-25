@@ -2,7 +2,7 @@
   "name": "neopt-sdk",
   "version": "0.1.0",
   "description": "neopt-sdk.js: Neo (Portable for all Things) SDK in JS",
-  "main": "index.js",
+  "main": "src/neopt-sdk/index.js",
   "scripts": {
     "test": "./node_modules/.bin/jest --coverage",
     "build": "./node_modules/.bin/webpack"
