@@ -5,15 +5,6 @@ let lNeo3 = require('neopt-lib-node-cpp');
 // c function needs wrapping... cpp don't!
 var myteststr = lNeo3.cwrap('myteststr', 'string', ['string', 'number']);
 
-// loading BigNum module
-let lt_bn = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/bn.js/lib/bn.js');
-let lt_cryptojs = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/crypto-js/crypto-js.js');
-
-//lNeo3['BN'] = lt_bn.BN; // "injecting" module
-//lNeo3['csBN'] = lt_csbn.csBigInteger;
-//lNeo3['CryptoJS'] = lt_cryptojs;
-
-
 let csBN = require('csbiginteger').csBigInteger;
 
 function testMain() {
