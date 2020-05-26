@@ -28,7 +28,7 @@ FILESYSTEM=-s FILESYSTEM=0
 
 # for web browsers
 build_vanilla_js: ./neopt-test.cpp 
-	mkdir -p build/neopt-lib-cpp/
+	mkdir -p build/neopt-lib-web-cpp/
 	@echo "We need Emscripten to proceed (tested with 1.39.16)"
 	echo
 	em++ --version
