@@ -1,10 +1,8 @@
-// prefix.js
+// prefix-web.js
 /*
 define(function() {
   return function(Module) {
 */
-
-
 
 // for global "polluted" browser version
 // we must load <script> ... </script> the csBigInteger.js and crypto-js BEFORE this
