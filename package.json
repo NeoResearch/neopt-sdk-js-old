@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "bn.js": "^4.11.8",
-    "fs": "",
     "crypto-js": "^4.0.0",
     "csBigInteger.js": "file:thirdparty/csBigInteger.js",
     "csbiginteger": "^4.0.3",
