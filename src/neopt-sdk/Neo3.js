@@ -29,7 +29,12 @@ function assert(val, msg) {
 }
 
 function Neo3(n) {
+
 }
+
+Neo3.Contract_CreateSignatureRedeemScript = function (jsonStr) {
+	return libNeo3cpp.cpp_SmartContract_Contract_CreateSignatureRedeemScript(jsonStr);
+};
 
 exports.Neo3 =  Neo3;
 })(typeof exports !== 'undefined' ? exports : this);

@@ -4,7 +4,7 @@ module.exports = {
   output: {
     library: 'neopt',
     libraryTarget: 'umd',
-    filename: './src/neopt-sdk/neopt-sdk.js',
+    filename: 'neopt-sdk.js',
     auxiliaryComment: 'Neo3 (Portable for all Things) SDK library'
   },
   node: {
