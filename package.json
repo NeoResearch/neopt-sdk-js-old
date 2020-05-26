@@ -31,7 +31,7 @@
     "csBigInteger.js": "file:thirdparty/csBigInteger.js",
     "csbiginteger": "^3.0.0",
     "elliptic": "^6.5.2",
-    "neopt-lib-cpp": "file:build/neopt-lib-cpp",
+    "neopt-lib-node-cpp": "file:build/neopt-lib-node-cpp",
     "webpack": "^4.43.0"
   }
 }

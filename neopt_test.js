@@ -1,11 +1,13 @@
+//let csbiginteger = lt_csbn;
+
 //let lNeo3 = require('./build/librarytest');
 let lNeo3 = require('neopt-lib-node-cpp');
 // c function needs wrapping... cpp don't!
 var myteststr = lNeo3.cwrap('myteststr', 'string', ['string', 'number']);
 
 // loading BigNum module
-let lt_bn = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/bn.js/lib/bn.js');
 let lt_csbn = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/csBigInteger.js/csBigInteger.js');
+let lt_bn = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/bn.js/lib/bn.js');
 let lt_cryptojs = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/crypto-js/crypto-js.js');
 
 lNeo3['BN'] = lt_bn.BN; // "injecting" module

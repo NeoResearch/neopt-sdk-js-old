@@ -91,7 +91,11 @@ mergeInto(
     var vstr1 = Module.UTF8ToString(str_val);
     //let csBN = Module['csBN'];
     //console.log("WILL NEED TO USE csBN...");
-    let csBN = csbiginteger.csBigInteger;
+    let csBN = null;
+    //if(Module['csBN'])
+    //  csBN = Module['csBN'];
+    //else 
+      csBN = csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
     //console.log(csBN);
     var big1 = new csBN(vstr1, int_base);
     //console.log("csbiginteger_init_s str='"+vstr1+"' base="+int_base+ " ptr_out="+ptr_out+ " sz_out"+sz_out);
