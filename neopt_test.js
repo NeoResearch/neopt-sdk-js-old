@@ -10,9 +10,9 @@ let lt_csbn = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/csBigInt
 let lt_bn = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/bn.js/lib/bn.js');
 let lt_cryptojs = require('./thirdparty/neo3-cpp-core/libs/lib/node_modules/crypto-js/crypto-js.js');
 
-lNeo3['BN'] = lt_bn.BN; // "injecting" module
-lNeo3['csBN'] = lt_csbn.csBigInteger;
-lNeo3['CryptoJS'] = lt_cryptojs;
+//lNeo3['BN'] = lt_bn.BN; // "injecting" module
+//lNeo3['csBN'] = lt_csbn.csBigInteger;
+//lNeo3['CryptoJS'] = lt_cryptojs;
 
 let csBN = lt_csbn.csBigInteger;
 

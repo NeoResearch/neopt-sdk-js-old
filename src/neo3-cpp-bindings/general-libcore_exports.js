@@ -41,7 +41,9 @@ mergeInto(
     return lengthBytesUTF8(rstr);
   },
   csbiginteger_gt: function (ptr1, sz1, ptr2, sz2) {
-    let csBN = csbiginteger.csBigInteger;
+    //let csBN = csbiginteger.csBigInteger;
+    let csBN = Module['csBN']; //csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
+    
     // inputs are pre-allocated
     //console.log("csbiginteger_gt ptr1="+ptr1+ " sz1="+sz1+ " ptr2="+ptr2+ " sz2="+sz2);
     //
@@ -64,7 +66,8 @@ mergeInto(
     return big1bn.gt(big2bn);
   },
   csbiginteger_lt: function (ptr1, sz1, ptr2, sz2) {
-    let csBN = csbiginteger.csBigInteger;
+    //let csBN = csbiginteger.csBigInteger;
+    let csBN = Module['csBN']; //csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
     // inputs are pre-allocated
     //console.log("csbiginteger_gt ptr1="+ptr1+ " sz1="+sz1+ " ptr2="+ptr2+ " sz2="+sz2);
     //
@@ -91,11 +94,11 @@ mergeInto(
     var vstr1 = Module.UTF8ToString(str_val);
     //let csBN = Module['csBN'];
     //console.log("WILL NEED TO USE csBN...");
-    let csBN = null;
+    //let csBN = null;
     //if(Module['csBN'])
     //  csBN = Module['csBN'];
     //else 
-      csBN = csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
+    let csBN = Module['csBN']; //csbiginteger.csBigInteger; // this will not work on 'node'... must REMOVE this into some --pre-js....
     //console.log(csBN);
     var big1 = new csBN(vstr1, int_base);
     //console.log("csbiginteger_init_s str='"+vstr1+"' base="+int_base+ " ptr_out="+ptr_out+ " sz_out"+sz_out);
@@ -123,7 +126,7 @@ mergeInto(
   csbiginteger_mod: function (ptr1, sz1, ptr2, sz2, ptr_out, sz_out) {
     // inputs are pre-allocated
     //let csBN = Module['csBN'];
-    let csBN = csbiginteger.csBigInteger;
+    let csBN = Module['csBN'];//csbiginteger.csBigInteger;
     //
     var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
     var v2 = Module.HEAPU8.subarray(ptr2, ptr2 + sz2);
@@ -154,9 +157,9 @@ mergeInto(
     return barray.length;
   },
   external_sha256: function (ptr1, sz1, ptr_out, sz_out) {
-    //let CryptoJS = Module['CryptoJS'];
+    let myCryptoJS = Module['CryptoJS'];
     console.log("need cryptojs...");
-    console.log(CryptoJS);
+    console.log(myCryptoJS);
     //let CryptoJS = Module['CryptoJS'];
     //
     var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
@@ -172,11 +175,11 @@ mergeInto(
     //
     //console.log("SHA256 hexv1 = "+hexv1);
     //
-    var hexEnc1 = CryptoJS.enc.Hex.parse(hexv1);
+    var hexEnc1 = myCryptoJS.enc.Hex.parse(hexv1);
     //
     //console.log("SHA256 hexEnc1 = "+hexEnc1);
     //
-    var outEnc1 = CryptoJS.SHA256(hexEnc1);
+    var outEnc1 = myCryptoJS.SHA256(hexEnc1);
     //
     //console.log("SHA256 outEnc1 = "+outEnc1);
     //
@@ -184,7 +187,7 @@ mergeInto(
     //const fromHexString = hexString =>
     //  new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
     //
-    var hex_out = CryptoJS.enc.Hex.stringify(outEnc1);
+    var hex_out = myCryptoJS.enc.Hex.stringify(outEnc1);
     //
     // ============ VANILLA JS =============
     const fromHexString = hexString =>
