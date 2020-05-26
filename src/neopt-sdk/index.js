@@ -2,7 +2,10 @@
 
 const Neo3 = require('./Neo3').Neo3;
 
+let CppModule = require('neopt-lib-node-cpp').Module;
+
 module.exports = {
-  Neo3
+  Neo3,
+  CppModule // emscripten Module
 }
 
