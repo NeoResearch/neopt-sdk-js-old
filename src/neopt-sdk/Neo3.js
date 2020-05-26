@@ -7,7 +7,7 @@
 //const BN = require('bn.js');
 //
 // load neo3-cpp-core library dependency (wasm)
-let libNeo3 = require('neopt-lib-cpp');
+let libNeo3 = require('neopt-lib-node-cpp');
 
 //
 // "injecting" modules (TODO: improve)
@@ -30,6 +30,7 @@ function Neo3(n) {
 }
 
 exports.Neo3 =  Neo3;
+exports.Module = libNeo3;
 })(typeof exports !== 'undefined' ? exports : this);
 
 
