@@ -1,7 +1,7 @@
 {
-    "name": "neopt-lib-cpp",
+    "name": "neopt-lib-node-cpp",
     "version": "0.0.0",
-    "description": "neopt-lib: C++ library in JS",
+    "description": "neopt-lib-node: C++ library in CommonJS",
     "main": "neopt-lib.js",
     "dependencies": {
       "bn.js": "^4.11.8"

@@ -1,5 +1,5 @@
 //let lNeo3 = require('./build/librarytest');
-let lNeo3 = require('neopt-lib-cpp');
+let lNeo3 = require('neopt-lib-node-cpp');
 // c function needs wrapping... cpp don't!
 var myteststr = lNeo3.cwrap('myteststr', 'string', ['string', 'number']);
 

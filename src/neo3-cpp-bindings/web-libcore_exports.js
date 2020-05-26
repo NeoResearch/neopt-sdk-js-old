@@ -90,9 +90,9 @@ mergeInto(
     // inputs are pre-allocated
     var vstr1 = Module.UTF8ToString(str_val);
     //let csBN = Module['csBN'];
-    console.log("WILL NEED TO USE csBN...");
+    //console.log("WILL NEED TO USE csBN...");
     let csBN = csbiginteger.csBigInteger;
-    console.log(csBN);
+    //console.log(csBN);
     var big1 = new csBN(vstr1, int_base);
     //console.log("csbiginteger_init_s str='"+vstr1+"' base="+int_base+ " ptr_out="+ptr_out+ " sz_out"+sz_out);
     //console.log(big1.toString());
@@ -136,7 +136,7 @@ mergeInto(
     var big2 = new csBN(lst2);
     var big2bn = big2.asBN();
     //
-    console.log("csbiginteger_mod big1='" + big1.toString(10) + "' big2='" + big1.toString(10) + "' -> ");
+    //console.log("csbiginteger_mod big1='" + big1.toString(10) + "' big2='" + big1.toString(10) + "' -> ");
     // ====== perform operation ======
     var big3bn = big1bn.mod(big2bn);
     //

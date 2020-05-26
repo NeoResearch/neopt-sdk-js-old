@@ -1,4 +1,4 @@
-all: jstest
+all: build_vanilla_js build_common_js
 
 
 GCC_FLAGS = -g -O3 -Wall --std=c++17 -fno-exceptions
@@ -20,34 +20,54 @@ CSBN_JS=./thirdparty/csbiginteger.js
 NEO3_SRC=./thirdparty/neo3-cpp-core/src/
 
 
-jstest: ./neopt-test.cpp
+# for web browsers
+build_vanilla_js: ./neopt-test.cpp 
 	mkdir -p build/neopt-lib-cpp/
 	@echo "We need Emscripten to proceed (tested with 1.39.16)"
 	echo
 	em++ --version
+	@echo ""
+	@echo "Building VanillaJS (for web browsers)"
+	@echo ""
 	@echo " ==== Compiling 'neopt-test.cpp' into './build/neopt-lib-cpp/neopt-lib.js' ====== "
 	#em++ -s WASM=0 -s STRICT=1 -s MODULARIZE=1 -s EXPORT_ES6=1  -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/libcore_exports-new.js --js-library $(BN_JS) --js-library $(CSBN_JS) -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
-	em++ -s WASM=1 -s STRICT=1  -s ENVIRONMENT=web -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/web-libcore_exports.js  -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
+	em++ -s WASM=1 -s STRICT=1 -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/web-libcore_exports.js  -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
+	#@echo ""
+	#@echo "Building HTML version"
+	#em++ -s WASM=0 -s STRICT=1 -s FILESYSTEM=0 -g4 --emrun -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/output.html -s ASSERTIONS=1 # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
+
+# for nodejs
+build_common_js:  ./neopt-test.cpp 
+	mkdir -p build/neopt-lib-node-cpp/
+	@echo "We need Emscripten to proceed (tested with 1.39.16)"
+	echo
+	em++ --version
 	@echo ""
-	@echo "Building HTML version"
+	@echo "Building CommonJS (for nodejs)"
+	@echo ""
+	@echo " ==== Compiling 'neopt-test.cpp' into './build/neopt-lib-node-cpp/neopt-lib.js' ====== "
+	#em++ -s WASM=0 -s STRICT=1 -s MODULARIZE=1 -s EXPORT_ES6=1  -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/libcore_exports-new.js --js-library $(BN_JS) --js-library $(CSBN_JS) -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
+	em++ -s WASM=1 -s STRICT=1 -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/web-libcore_exports.js  -o ./build/neopt-lib-node-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1
+	@echo ""
+	#@echo "Building HTML version"
 	#em++ -s WASM=0 -s STRICT=1 -s FILESYSTEM=0 -g4 --emrun -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/output.html -s ASSERTIONS=1 # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
 
 
-run:
+run_js_node:
 	@echo
 	@echo "======= testing 'node_test.js' ======="
 	@echo
 	@echo "creating package.json for subproject neopt-lib-cpp"
-	cp neopt-lib-package.json build/neopt-lib-cpp/package.json
+	cp neopt-lib-package.json build/neopt-lib-node-cpp/package.json
 	@echo ""
-	@echo "installng neopt-lib-cpp locally"
+	@echo "installng neopt-lib-node-cpp locally"
 	npm install
 	@echo ""
 	@echo "REAL run now..."
 	node neopt_test.js
 
 dist:
-	@echo "We may need to comment the following line 96 in './build/neopt-lib-cpp/neopt-lib.js'"
+	@echo "We may need to comment the following line 96 in './build/neopt-lib-node-cpp/neopt-lib.js'"
 	@echo "//if (!nodeFS) nodeFS = require('fs');"
 	npm run build
 
