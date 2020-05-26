@@ -29,6 +29,8 @@
     "bn.js": "^4.11.8",
     "crypto-js": "^4.0.0",
     "csBigInteger.js": "file:thirdparty/csBigInteger.js",
+    "csbiginteger": "^3.0.0",
+    "elliptic": "^6.5.2",
     "neopt-lib-cpp": "file:build/neopt-lib-cpp",
     "webpack": "^4.43.0"
   }

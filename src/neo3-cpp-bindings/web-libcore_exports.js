@@ -41,10 +41,11 @@ mergeInto(
     return lengthBytesUTF8(rstr);
   },
   csbiginteger_gt: function (ptr1, sz1, ptr2, sz2) {
+    let csBN = csbiginteger.csBigInteger;
     // inputs are pre-allocated
     //console.log("csbiginteger_gt ptr1="+ptr1+ " sz1="+sz1+ " ptr2="+ptr2+ " sz2="+sz2);
     //
-    let csBN = Module['csBN'];
+    //let csBN = Module['csBN'];
     var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
     var v2 = Module.HEAPU8.subarray(ptr2, ptr2 + sz2);
     //
@@ -63,10 +64,11 @@ mergeInto(
     return big1bn.gt(big2bn);
   },
   csbiginteger_lt: function (ptr1, sz1, ptr2, sz2) {
+    let csBN = csbiginteger.csBigInteger;
     // inputs are pre-allocated
     //console.log("csbiginteger_gt ptr1="+ptr1+ " sz1="+sz1+ " ptr2="+ptr2+ " sz2="+sz2);
     //
-    let csBN = Module['csBN'];
+    //let csBN = Module['csBN'];
     var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
     var v2 = Module.HEAPU8.subarray(ptr2, ptr2 + sz2);
     //
@@ -87,7 +89,10 @@ mergeInto(
   csbiginteger_init_s: function (str_val, int_base, ptr_out, sz_out) {
     // inputs are pre-allocated
     var vstr1 = Module.UTF8ToString(str_val);
-    let csBN = Module['csBN'];
+    //let csBN = Module['csBN'];
+    console.log("WILL NEED TO USE csBN...");
+    let csBN = csbiginteger.csBigInteger;
+    console.log(csBN);
     var big1 = new csBN(vstr1, int_base);
     //console.log("csbiginteger_init_s str='"+vstr1+"' base="+int_base+ " ptr_out="+ptr_out+ " sz_out"+sz_out);
     //console.log(big1.toString());
@@ -113,7 +118,8 @@ mergeInto(
   // cs_int32 csbiginteger_mod(cs_byte* big1, int sz_big1, cs_byte* big2, int sz_big2, cs_byte* vr, int sz_vr);
   csbiginteger_mod: function (ptr1, sz1, ptr2, sz2, ptr_out, sz_out) {
     // inputs are pre-allocated
-    let csBN = Module['csBN'];
+    //let csBN = Module['csBN'];
+    let csBN = csbiginteger.csBigInteger;
     //
     var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
     var v2 = Module.HEAPU8.subarray(ptr2, ptr2 + sz2);
