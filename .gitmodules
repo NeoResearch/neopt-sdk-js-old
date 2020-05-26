@@ -4,3 +4,6 @@
 [submodule "thirdparty/csBigInteger.js"]
 	path = thirdparty/csBigInteger.js
 	url = https://github.com/NeoResearch/csBigInteger.js.git
+[submodule "thirdparty/crypto-js"]
+	path = thirdparty/crypto-js
+	url = https://github.com/brix/crypto-js.git

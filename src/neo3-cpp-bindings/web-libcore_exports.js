@@ -158,6 +158,7 @@ mergeInto(
     var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
     //
     // helper function
+    // ============ VANILLA JS =============
     const toHexString = bytes =>
       bytes.reduce((str, byte) => str + byte.toString(16).padStart(2, '0'), '');
     //
@@ -176,12 +177,23 @@ mergeInto(
     //console.log("SHA256 outEnc1 = "+outEnc1);
     //
     // MAYBE THIS IS USEFUL ON WEB PLATFORMS (NON-NODE)
-    const fromHexString = hexString =>
-      new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+    //const fromHexString = hexString =>
+    //  new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
     //
     var hex_out = CryptoJS.enc.Hex.stringify(outEnc1);
     //
-    var vout = Uint8Array.from(Buffer.from(hex_out, 'hex'));
+    // ============ VANILLA JS =============
+    const fromHexString = hexString =>
+    new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+    //
+    var vout = fromHexString(hex_out);
+    //
+    //
+    // ============ CommonJS (NodeJS) =============
+    //var vout = Uint8Array.from(Buffer.from(hex_out, 'hex'));
+    //
+    //
+    //
     //var vout = fromHexString(outEnc1);
     //
     //console.log("SHA256 vout = "+vout);
