@@ -5,6 +5,8 @@ let lNeo3 = require('neopt-lib-node-cpp');
 // c function needs wrapping... cpp don't!
 var myteststr = lNeo3.cwrap('myteststr', 'string', ['string', 'number']);
 
+let SDK = require('./src/neopt-sdk/index.js');
+
 let csBN = require('csbiginteger').csBigInteger;
 
 function testMain() {
@@ -27,8 +29,16 @@ function testMain() {
     };
     var strJson = JSON.stringify(ecpoint);
     console.log("json str point: "+strJson);
+    console.log("");
+    console.log("TEST1");
     var vout = lNeo3.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
     console.log(vout);
+    //
+    // Using SDK 'Neo3'
+    console.log("");
+    console.log("TEST2 (SDK testing)");
+    var vout2 = SDK.Neo3.Contract_CreateSignatureRedeemScript(strJson);
+    console.log(vout2);
 
 }
 
