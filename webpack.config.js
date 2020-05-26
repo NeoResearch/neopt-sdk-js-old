@@ -6,5 +6,8 @@ module.exports = {
     libraryTarget: 'umd',
     filename: './src/neopt-sdk/neopt-sdk.js',
     auxiliaryComment: 'Neo3 (Portable for all Things) SDK library'
-  }
+  },
+  node: {
+    fs: "empty"
+ }
 };

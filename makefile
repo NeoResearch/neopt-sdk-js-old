@@ -56,7 +56,10 @@ build_common_js:  ./neopt-test.cpp
 	@echo ""
 	@echo " ==== Compiling 'neopt-test.cpp' into '$(OUTPUT_NODE)' ====== "
 	#em++ -s WASM=0 -s STRICT=1 -s MODULARIZE=1 -s EXPORT_ES6=1  -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/libcore_exports-new.js --js-library $(BN_JS) --js-library $(CSBN_JS) -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
-	em++ -s ENVIRONMENT='web' --pre-js prefix-node.js -I$(NEO3_LIBS) -g4 --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) $(GENERAL_JS_LIB)  -o $(OUTPUT_NODE) $(ASSERTIONS) $(SET_TO_WASM) $(EMCC_STRICT) $(FILESYSTEM)
+	#
+	#em++ -s ENVIRONMENT='web' --pre-js prefix-node.js -I$(NEO3_LIBS) -g4 --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) $(GENERAL_JS_LIB)  -o $(OUTPUT_NODE) $(ASSERTIONS) $(SET_TO_WASM) $(EMCC_STRICT) $(FILESYSTEM)
+	em++ --pre-js prefix-node.js -I$(NEO3_LIBS) -g4 --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) $(GENERAL_JS_LIB)  -o $(OUTPUT_NODE) $(ASSERTIONS) $(SET_TO_WASM) $(EMCC_STRICT) $(FILESYSTEM)
+	#
 	#em++ -Ilibs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./jstest.cpp -I$(NEO3_SRC) --js-library src/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/librarytest.js
 	#@echo "Building HTML version"
 	#em++ -s WASM=0 -s STRICT=1 -s FILESYSTEM=0 -g4 --emrun -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/output.html -s ASSERTIONS=1 # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
