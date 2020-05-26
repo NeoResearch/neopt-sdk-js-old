@@ -33,7 +33,8 @@ function Neo3(n) {
 }
 
 Neo3.Contract_CreateSignatureRedeemScript = function (jsonStr) {
-	return libNeo3cpp.cpp_SmartContract_Contract_CreateSignatureRedeemScript(jsonStr);
+	return jsonStr;
+	//return libNeo3cpp.cpp_SmartContract_Contract_CreateSignatureRedeemScript(jsonStr);
 };
 
 exports.Neo3 =  Neo3;

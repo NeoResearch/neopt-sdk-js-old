@@ -3,9 +3,11 @@
 const Neo3 = require('./Neo3').Neo3;
 
 let CppModule = require('neopt-lib-node-cpp');
+let csbig = require('csbiginteger');
 
 module.exports = {
   Neo3,
-  CppModule // emscripten Module
+  CppModule, // emscripten Module
+  csbig
 }
 
