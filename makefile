@@ -27,7 +27,7 @@ jstest: ./neopt-test.cpp
 	em++ --version
 	@echo " ==== Compiling 'neopt-test.cpp' into './build/neopt-lib-cpp/neopt-lib.js' ====== "
 	#em++ -s WASM=0 -s STRICT=1 -s MODULARIZE=1 -s EXPORT_ES6=1  -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/libcore_exports-new.js --js-library $(BN_JS) --js-library $(CSBN_JS) -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
-	em++ -s WASM=0 -s STRICT=1  -s ENVIRONMENT=web -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/web-libcore_exports.js  -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
+	em++ -s WASM=1 -s STRICT=1  -s ENVIRONMENT=web -s FILESYSTEM=0 -g4 -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library src/neo3-cpp-bindings/web-libcore_exports.js  -o ./build/neopt-lib-cpp/neopt-lib.js  -s ASSERTIONS=1  # -s 'EXPORT_NAME="Neo3CPP"'  -s MODULARIZE=1 -s EXPORT_ES6=1 -s
 	@echo ""
 	@echo "Building HTML version"
 	#em++ -s WASM=0 -s STRICT=1 -s FILESYSTEM=0 -g4 --emrun -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/output.html -s ASSERTIONS=1 # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
