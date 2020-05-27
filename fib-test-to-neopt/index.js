@@ -37,8 +37,8 @@ mymodule.onRuntimeInitialized = () => {
 
 
 //const Neo3 = require('./Neo3').Neo3;
-const csbig = require('csbiginteger');
-const CryptoJS = require('crypto-js');
+export const csbig = require('csbiginteger');
+export const CryptoJS = require('crypto-js');
 //const CppModule = require('../../build/neopt-lib-cpp-node/neopt-lib-cpp-node');
 // Can't resolve 'env' in '/home/imcoelho/git-reps/neopt-sdk-js/build/neopt-lib-cpp-node'
 //const cppFunc = require('../build/neopt-lib-cpp-node/neopt-lib-cpp-node').cpp_SmartContract_Contract_CreateSignatureRedeemScript;
@@ -57,3 +57,7 @@ const CryptoJS = require('crypto-js');
 
   //csbig
 //}
+
+
+// THIS IS A ES6 MODULE... NO MORE 'module.exports' HERE!!!
+// ONLY USE: 'export bla bla bla...'
