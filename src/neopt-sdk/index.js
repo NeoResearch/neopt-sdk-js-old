@@ -8,10 +8,10 @@ const Neo3 = require('./Neo3').Neo3;
 const csbig = require('csbiginteger');
 const CryptoJS = require('crypto-js');
 
-const CppModule = require('neopt-lib-node-cpp');
+const CppModule = require('../../build/neopt-lib-cpp-node/neopt-lib-cpp-node');
 
-const cppFunc = require('neopt-lib-node-cpp').cpp_SmartContract_Contract_CreateSignatureRedeemScript;
-const cppFunc2 = require('neopt-lib-node-cpp').cpp_SmartContract_Contract_CreateSignatureRedeemScript2;
+const cppFunc = require('../../build/neopt-lib-cpp-node/neopt-lib-cpp-node').cpp_SmartContract_Contract_CreateSignatureRedeemScript;
+const cppFunc2 = require('../../build/neopt-lib-cpp-node/neopt-lib-cpp-node').cpp_SmartContract_Contract_CreateSignatureRedeemScript2;
 
 //console.log("MODULE:"+CppModule);
 //console.log("FUNC: "+CppModule._mytest);
