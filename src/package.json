@@ -2,10 +2,10 @@
   "name": "neopt-sdk",
   "version": "0.2.0",
   "description": "neopt-sdk.js: Neo (Portable for all Things) SDK in JS",
-  "main": "src/neopt-sdk/index.js",
+  "main": "./neopt-sdk/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest --coverage",
-    "build": "npm install && ./node_modules/.bin/webpack --display-optimization-bailout --display verbose && ./node_modules/.bin/webpack --config webpack-es6.config.js"
+    "test": "../node_modules/.bin/jest --coverage",
+    "build": "npm install && ../node_modules/.bin/webpack --display-optimization-bailout --display verbose && ../node_modules/.bin/webpack --config webpack-es6.config.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "crypto-js": "^4.0.0",
     "csbiginteger": "^4.0.3",
     "elliptic": "^6.5.2",
-    "neopt-lib-cpp-node": "file:build/neopt-lib-cpp-node",
+    "neopt-lib-cpp-node": "file:../build/neopt-lib-cpp-node",
     "webpack": "^4.43.0"
   }
 }

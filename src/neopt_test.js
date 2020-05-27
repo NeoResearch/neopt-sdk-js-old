@@ -5,7 +5,7 @@ let lNeo3 = require('neopt-lib-cpp-node');
 // c function needs wrapping... cpp don't!
 var myteststr = lNeo3.cwrap('myteststr', 'string', ['string', 'number']);
 
-let SDK = require('./src/neopt-sdk/index.js');
+let SDK = require('./neopt-sdk/index.js');
 
 let csBN = require('csbiginteger').csBigInteger;
 
