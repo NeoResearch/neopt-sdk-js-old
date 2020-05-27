@@ -1,0 +1,36 @@
+{
+  "name": "neopt-lib-cpp-node-to-web",
+  "version": "0.0.0",
+  "description": "neopt-lib: Neo (Portable for all Things) SDK in JS",
+  "main": "./index-pack-cpp.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jest --coverage",
+    "build-lib": "npm install && ./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeoResearch/neopt-sdk.js.git"
+  },
+  "keywords": [
+    "neo",
+    "sdk"
+  ],
+  "author": "NeoResearch <neoresearch@no-email.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NeoResearch/neopt-sdk.js/issues"
+  },
+  "homepage": "https://github.com/NeoResearch/neopt-sdk.js#readme",
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "bn.js": "^4.11.8",
+    "crypto-js": "^4.0.0",
+    "csbiginteger": "^4.0.3",
+    "elliptic": "^6.5.2",
+    "neopt-lib-cpp-node": "file:../build/neopt-lib-cpp-node",
+    "webpack": "^4.43.0"
+  }
+}

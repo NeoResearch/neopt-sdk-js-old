@@ -1,10 +1,10 @@
 module.exports = {
   mode : 'production',
-  entry : './src/neopt-sdk/index.js',
+  entry : './index-pack-cpp.js',
   output: {
     library: 'neopt',
     libraryTarget: 'umd',
-    filename: 'neopt-sdk.js',
+    filename: 'neopt-lib-cpp-node-to-web.js',
     auxiliaryComment: 'Neo3 (Portable for all Things) SDK library'
   },
   node: {
