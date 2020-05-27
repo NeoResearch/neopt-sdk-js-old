@@ -27,28 +27,26 @@ int myoutro_denovo(int n) {
 }
 
 
-// DO NOT DELETE THIS IDEA:
+// =======================
+// DO NOT DELETE THIS IDEA
+// =======================
 //EMSCRIPTEN_KEEPALIVE
 //extern "C"
 //const char* c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
+//
+// this considers that memory is owned by outsider, and return 'cs_out' again
+//
+// current idea now is to allocate memory locally and return 'char ptr' (could be lost.. we hope not!)
+// ===============================================================================
 
 EMSCRIPTEN_KEEPALIVE
 extern "C"
-const char* c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
-   std::cout << "PRINT cs_in  = '" << (int)cs_in << "'" << std::endl;
-   std::cout << "PRINT cs_out = '" << (int)cs_out << "'" << std::endl;
+const char* c_API_CreateSignatureRedeemScript(const char* cs_in) {
    std::string sin(cs_in);
    std::cout << "PRINT s='" << sin << "'" << std::endl;
-   std::string sout(cs_out);
-   std::cout << "PRINT s='" << sout << "'" << std::endl;
    std::string s_out = Neo::SmartContract::Contract::API_CreateSignatureRedeemScript(sin);
-   //for(unsigned i=0; i<s_out.size(); i++)
-   //   cs_out[i] = s_out[i];
-   cs_out[0] = 'O';
-   cs_out[1] = 'I';
-   sout = s_out;
-  std::cout << "PRINT s='" << sout << "'" << std::endl;
-  return cs_out;
+   std::cout << "PRINT s='" << s_out << "'" << std::endl;
+   return s_out.c_str();
 }
 
 
