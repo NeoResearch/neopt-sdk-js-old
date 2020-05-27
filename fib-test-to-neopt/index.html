@@ -1,2 +1,15 @@
 <!doctype html>
 <script src="./dist/bundle.js"></script>
+<script>
+    console.log("myfib:" + neoptFib);
+    console.log("myOnInit:" + neoptFib.myOnInit);
+    //
+    neoptFib.myOnInit(
+        function () {
+            console.log("INIT!");
+            // can use functions now!
+            console.log(neoptFib.myfib(10));
+        }
+    );
+//
+</script>

@@ -31,8 +31,17 @@ const mymodule = ourtest({
 
 export const myfib = mymodule._fib;
 
+//export let hasInit = false;
+
+let myFunc = function(){console.log("initialized wasm");};
+
+export function myOnInit(f){
+  myFunc = f;
+};
+
 mymodule.onRuntimeInitialized = () => {
   console.log(mymodule._fib(12));
+  myFunc();
 };
 
 
