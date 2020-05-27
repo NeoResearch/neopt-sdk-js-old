@@ -28,8 +28,17 @@ int myoutro_denovo(int n) {
 
 
 
-
-
+EMSCRIPTEN_KEEPALIVE
+extern "C"
+bool c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
+   std::cout << "PRINT cs_in = '" << (int)cs_in << "'" << std::endl;
+   std::string s(cs_in);
+   std::cout << "PRINT s='" << s << "'" << std::endl;
+   std::string s_out = Neo::SmartContract::Contract::API_CreateSignatureRedeemScript(s);
+   for(unsigned i=0; i<s_out.size(); i++)
+      cs_out[i] = s_out[i];
+  return true;
+}
 
 
 

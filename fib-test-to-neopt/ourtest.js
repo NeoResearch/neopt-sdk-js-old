@@ -631,8 +631,8 @@ var wasmMemory;
 // In the wasm backend, we polyfill the WebAssembly object,
 // so this creates a (non-native-wasm) table for us.
 var wasmTable = new WebAssembly.Table({
-  'initial': 484,
-  'maximum': 484,
+  'initial': 581,
+  'maximum': 581,
   'element': 'anyfunc'
 });
 
@@ -1231,11 +1231,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 23056,
+    STACK_BASE = 26256,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5265936,
-    DYNAMIC_BASE = 5265936,
-    DYNAMICTOP_PTR = 22864;
+    STACK_MAX = 5269136,
+    DYNAMIC_BASE = 5269136,
+    DYNAMICTOP_PTR = 26064;
 
 
 
@@ -1656,7 +1656,7 @@ var ASM_CONSTS = [];
 
 
 
-// STATICTOP = STATIC_BASE + 22032;
+// STATICTOP = STATIC_BASE + 25232;
 /* global initializers */  __ATINIT__.push({ func: function() { globalCtors() } });
 
 
@@ -1667,7 +1667,7 @@ var ASM_CONSTS = [];
 
 
 /* no memory initializer */
-var tempDoublePtr = 23040
+var tempDoublePtr = 26240
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
   HEAP8[tempDoublePtr] = HEAP8[ptr];
@@ -1729,6 +1729,32 @@ function copyTempDouble(ptr) {
 
   function ___assert_fail(condition, filename, line, func) {
       abort('Assertion failed: ' + UTF8ToString(condition) + ', at: ' + [filename ? UTF8ToString(filename) : 'unknown filename', line, func ? UTF8ToString(func) : 'unknown function']);
+    }
+
+  function ___cxa_allocate_exception(size) {
+      return _malloc(size);
+    }
+
+  
+  var ___exception_infos={};
+  
+  var ___exception_last=0;function ___cxa_throw(ptr, type, destructor) {
+      ___exception_infos[ptr] = {
+        ptr: ptr,
+        adjusted: [ptr],
+        type: type,
+        destructor: destructor,
+        refcount: 0,
+        caught: false,
+        rethrown: false
+      };
+      ___exception_last = ptr;
+      if (!("uncaught_exception" in __ZSt18uncaught_exceptionv)) {
+        __ZSt18uncaught_exceptionv.uncaught_exceptions = 1;
+      } else {
+        __ZSt18uncaught_exceptionv.uncaught_exceptions++;
+      }
+      throw ptr;
     }
 
   function ___gxx_personality_v0() {
@@ -4335,6 +4361,40 @@ function copyTempDouble(ptr) {
       return big1bn.lt(big2bn);
     }
 
+  function _csbiginteger_mod(ptr1, sz1, ptr2, sz2, ptr_out, sz_out) {
+      // inputs are pre-allocated
+      //let csBN = Module['csBN'];
+      let csBN = Module['csBN'];//csbiginteger.csBigInteger;
+      //
+      var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
+      var v2 = Module.HEAPU8.subarray(ptr2, ptr2 + sz2);
+      //
+      var lst1 = [];
+      for (var i = 0; i < sz1; i++)
+        lst1.push(v1[i]);
+      var big1 = new csBN(lst1);
+      var big1bn = big1.asBN();
+      //
+      var lst2 = [];
+      for (var i = 0; i < sz2; i++)
+        lst2.push(v2[i]);
+      var big2 = new csBN(lst2);
+      var big2bn = big2.asBN();
+      //
+      //console.log("csbiginteger_mod big1='" + big1.toString(10) + "' big2='" + big1.toString(10) + "' -> ");
+      // ====== perform operation ======
+      var big3bn = big1bn.mod(big2bn);
+      //
+      var big3 = new csBN(big3bn);
+      console.log("big3 ='" + big3.toString(10) + "'");
+      var barray = big3.toByteArray();
+      const myUint8Array = new Uint8Array(barray);
+      Module.HEAPU8.set(myUint8Array, ptr_out);
+  
+      // returns 'real' size for out...
+      return barray.length;
+    }
+
   function _emscripten_get_heap_size() {
       return HEAP8.length;
     }
@@ -4390,6 +4450,68 @@ function copyTempDouble(ptr) {
   
   
       return true;
+    }
+
+  function _exit(status) {
+      // void _exit(int status);
+      // http://pubs.opengroup.org/onlinepubs/000095399/functions/exit.html
+      exit(status);
+    }
+
+  function _external_sha256(ptr1, sz1, ptr_out, sz_out) {
+      let myCryptoJS = Module['CryptoJS'];
+      //console.log("need cryptojs...");
+      //console.log(myCryptoJS);
+      //let CryptoJS = Module['CryptoJS'];
+      //
+      var v1 = Module.HEAPU8.subarray(ptr1, ptr1 + sz1);
+      //
+      // helper function
+      // ============ VANILLA JS =============
+      const toHexString = bytes =>
+        bytes.reduce((str, byte) => str + byte.toString(16).padStart(2, '0'), '');
+      //
+      //console.log("SHA256 v1 = "+v1);
+      //
+      var hexv1 = toHexString(v1);
+      //
+      //console.log("SHA256 hexv1 = "+hexv1);
+      //
+      var hexEnc1 = myCryptoJS.enc.Hex.parse(hexv1);
+      //
+      //console.log("SHA256 hexEnc1 = "+hexEnc1);
+      //
+      var outEnc1 = myCryptoJS.SHA256(hexEnc1);
+      //
+      //console.log("SHA256 outEnc1 = "+outEnc1);
+      //
+      // MAYBE THIS IS USEFUL ON WEB PLATFORMS (NON-NODE)
+      //const fromHexString = hexString =>
+      //  new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+      //
+      var hex_out = myCryptoJS.enc.Hex.stringify(outEnc1);
+      //
+      // ============ VANILLA JS =============
+      const fromHexString = hexString =>
+      new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+      //
+      var vout = fromHexString(hex_out);
+      //
+      //
+      // ============ CommonJS (NodeJS) =============
+      //var vout = Uint8Array.from(Buffer.from(hex_out, 'hex'));
+      //
+      //
+      //
+      //var vout = fromHexString(outEnc1);
+      //
+      //console.log("SHA256 vout = "+vout);
+      Module.HEAPU8.set(vout, ptr_out); // TODO: test 'sz_out' for size checks
+  
+      //var v2 = Module.HEAPU8.subarray(ptr2, ptr2+sz2);
+  
+      //console.log("WARNING: EMPTY FUNCTION 'external_sha256' on licore_exports.js");
+      return vout.length;
     }
 
   
@@ -4829,7 +4951,7 @@ function intArrayToString(array) {
 
 var asmGlobalArg = {};
 
-var asmLibraryArg = { "___assert_fail": ___assert_fail, "___gxx_personality_v0": ___gxx_personality_v0, "___lock": ___lock, "___map_file": ___map_file, "___setErrNo": ___setErrNo, "___syscall91": ___syscall91, "___unlock": ___unlock, "___wasi_fd_close": ___wasi_fd_close, "___wasi_fd_read": ___wasi_fd_read, "___wasi_fd_seek": ___wasi_fd_seek, "___wasi_fd_write": ___wasi_fd_write, "__addDays": __addDays, "__arraySum": __arraySum, "__emscripten_syscall_munmap": __emscripten_syscall_munmap, "__isLeapYear": __isLeapYear, "__memory_base": 1024, "__table_base": 0, "_abort": _abort, "_csbiginteger_gt": _csbiginteger_gt, "_csbiginteger_init_s": _csbiginteger_init_s, "_csbiginteger_lt": _csbiginteger_lt, "_emscripten_get_heap_size": _emscripten_get_heap_size, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_emscripten_resize_heap": _emscripten_resize_heap, "_fd_close": _fd_close, "_fd_read": _fd_read, "_fd_seek": _fd_seek, "_fd_write": _fd_write, "_getenv": _getenv, "_llvm_stackrestore": _llvm_stackrestore, "_llvm_stacksave": _llvm_stacksave, "_strftime": _strftime, "_strftime_l": _strftime_l, "abort": abort, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "demangle": demangle, "demangleAll": demangleAll, "emscripten_realloc_buffer": emscripten_realloc_buffer, "getTempRet0": getTempRet0, "jsStackTrace": jsStackTrace, "memory": wasmMemory, "setTempRet0": setTempRet0, "stackTrace": stackTrace, "table": wasmTable, "tempDoublePtr": tempDoublePtr };
+var asmLibraryArg = { "___assert_fail": ___assert_fail, "___cxa_allocate_exception": ___cxa_allocate_exception, "___cxa_throw": ___cxa_throw, "___gxx_personality_v0": ___gxx_personality_v0, "___lock": ___lock, "___map_file": ___map_file, "___setErrNo": ___setErrNo, "___syscall91": ___syscall91, "___unlock": ___unlock, "___wasi_fd_close": ___wasi_fd_close, "___wasi_fd_read": ___wasi_fd_read, "___wasi_fd_seek": ___wasi_fd_seek, "___wasi_fd_write": ___wasi_fd_write, "__addDays": __addDays, "__arraySum": __arraySum, "__emscripten_syscall_munmap": __emscripten_syscall_munmap, "__isLeapYear": __isLeapYear, "__memory_base": 1024, "__table_base": 0, "_abort": _abort, "_csbiginteger_gt": _csbiginteger_gt, "_csbiginteger_init_s": _csbiginteger_init_s, "_csbiginteger_lt": _csbiginteger_lt, "_csbiginteger_mod": _csbiginteger_mod, "_emscripten_get_heap_size": _emscripten_get_heap_size, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_emscripten_resize_heap": _emscripten_resize_heap, "_exit": _exit, "_external_sha256": _external_sha256, "_fd_close": _fd_close, "_fd_read": _fd_read, "_fd_seek": _fd_seek, "_fd_write": _fd_write, "_getenv": _getenv, "_llvm_stackrestore": _llvm_stackrestore, "_llvm_stacksave": _llvm_stacksave, "_strftime": _strftime, "_strftime_l": _strftime_l, "abort": abort, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "demangle": demangle, "demangleAll": demangleAll, "emscripten_realloc_buffer": emscripten_realloc_buffer, "getTempRet0": getTempRet0, "jsStackTrace": jsStackTrace, "memory": wasmMemory, "setTempRet0": setTempRet0, "stackTrace": stackTrace, "table": wasmTable, "tempDoublePtr": tempDoublePtr };
 // EMSCRIPTEN_START_ASM
 var asm =Module["asm"]// EMSCRIPTEN_END_ASM
 (asmGlobalArg, asmLibraryArg, buffer);
@@ -4849,6 +4971,10 @@ var ___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = function() {
 
 var ___errno_location = Module["___errno_location"] = function() {
   return Module["asm"]["___errno_location"].apply(null, arguments)
+};
+
+var _c_API_CreateSignatureRedeemScript = Module["_c_API_CreateSignatureRedeemScript"] = function() {
+  return Module["asm"]["_c_API_CreateSignatureRedeemScript"].apply(null, arguments)
 };
 
 var _emscripten_get_sbrk_ptr = Module["_emscripten_get_sbrk_ptr"] = function() {
@@ -4919,6 +5045,10 @@ var stackSave = Module["stackSave"] = function() {
   return Module["asm"]["stackSave"].apply(null, arguments)
 };
 
+var dynCall_di = Module["dynCall_di"] = function() {
+  return Module["asm"]["dynCall_di"].apply(null, arguments)
+};
+
 var dynCall_ii = Module["dynCall_ii"] = function() {
   return Module["asm"]["dynCall_ii"].apply(null, arguments)
 };
@@ -4967,6 +5097,10 @@ var dynCall_iiiiij = Module["dynCall_iiiiij"] = function() {
   return Module["asm"]["dynCall_iiiiij"].apply(null, arguments)
 };
 
+var dynCall_ji = Module["dynCall_ji"] = function() {
+  return Module["asm"]["dynCall_ji"].apply(null, arguments)
+};
+
 var dynCall_jiji = Module["dynCall_jiji"] = function() {
   return Module["asm"]["dynCall_jiji"].apply(null, arguments)
 };
@@ -5001,6 +5135,10 @@ var dynCall_viiiiii = Module["dynCall_viiiiii"] = function() {
 
 var dynCall_viijii = Module["dynCall_viijii"] = function() {
   return Module["asm"]["dynCall_viijii"].apply(null, arguments)
+};
+
+var dynCall_vij = Module["dynCall_vij"] = function() {
+  return Module["asm"]["dynCall_vij"].apply(null, arguments)
 };
 ;
 

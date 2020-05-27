@@ -28,7 +28,8 @@
     };
     var strJson = JSON.stringify(ecpoint);
   
-    var vout = neoptFib.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+    //var vout = neoptFib.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+    var vout = neoptFib.c_API_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
     //var vout = neoptFib.Neo3.Contract_CreateSignatureRedeemScript(strJson);
 
     console.log(vout);

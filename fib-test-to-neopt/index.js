@@ -35,7 +35,9 @@ export const myoutro = mymodule._myoutro;
 
 export const myoutro_denovo = mymodule._myoutro_denovo;
 
+export const cpp_myoutro_denovo2 = mymodule.cpp_myoutro_denovo2;
 
+export const c_API_CreateSignatureRedeemScript = mymodule._c_API_CreateSignatureRedeemScript;
 
 export const cpp_SmartContract_Contract_CreateSignatureRedeemScript = mymodule.cpp_SmartContract_Contract_CreateSignatureRedeemScript;
 
