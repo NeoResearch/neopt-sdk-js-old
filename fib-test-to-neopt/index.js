@@ -31,6 +31,11 @@ const mymodule = ourtest({
 
 export const myfib = mymodule._fib;
 
+export const myoutro = mymodule._myoutro;
+
+export const cpp_SmartContract_Contract_CreateSignatureRedeemScript = mymodule.cpp_SmartContract_Contract_CreateSignatureRedeemScript;
+
+
 //export let hasInit = false;
 
 let myFunc = function(){console.log("initialized wasm");};
@@ -40,9 +45,10 @@ export function myOnInit(f){
 };
 
 mymodule.onRuntimeInitialized = () => {
-  console.log(mymodule._fib(12));
+  console.log(mymodule._fib(20));
   myFunc();
 };
+
 
 
 //export const Neo3 = require('../src/neopt-sdk/Neo3').Neo3; // THIS CRASHES!!

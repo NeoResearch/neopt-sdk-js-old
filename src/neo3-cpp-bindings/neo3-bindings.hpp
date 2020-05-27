@@ -16,6 +16,7 @@
 #include <optional> // uptr - TODO REMOVE
 
 #include <emscripten/bind.h>
+#include <emscripten.h>
 //
 using namespace emscripten;
 
@@ -213,11 +214,29 @@ cpp_Contract_CreateSignatureRedeemScript_XY2(std::map<bool, vbyte> point)
 
 // ================================
 
+
 std::string
 cpp_SmartContract_Contract_CreateSignatureRedeemScript(std::string s)
 {
    return Neo::SmartContract::Contract::API_CreateSignatureRedeemScript(s);
 }
+
+
+
+
+EMSCRIPTEN_KEEPALIVE
+extern "C"
+int fib2(int n) {
+  int i, t, a = 0, b = 1;
+  for (i = 0; i < n; i++) {
+    t = a + b;
+    a = b;
+    b = t;
+  }
+  return b;
+}
+
+
 
 /*
 // these methods are provided to the external world (for nodejs, for example)

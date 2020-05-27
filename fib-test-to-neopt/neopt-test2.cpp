@@ -21,6 +21,12 @@ int fib(int n) {
 }
 
 
+EMSCRIPTEN_KEEPALIVE
+extern "C"
+int myoutro(int n) {
+  return n+10;
+}
+
 
 
 int

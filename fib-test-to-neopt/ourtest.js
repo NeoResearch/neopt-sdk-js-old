@@ -4863,6 +4863,10 @@ var _fib = Module["_fib"] = function() {
   return Module["asm"]["_fib"].apply(null, arguments)
 };
 
+var _fib2 = Module["_fib2"] = function() {
+  return Module["asm"]["_fib2"].apply(null, arguments)
+};
+
 var _free = Module["_free"] = function() {
   return Module["asm"]["_free"].apply(null, arguments)
 };
@@ -4885,6 +4889,10 @@ var _memmove = Module["_memmove"] = function() {
 
 var _memset = Module["_memset"] = function() {
   return Module["asm"]["_memset"].apply(null, arguments)
+};
+
+var _myoutro = Module["_myoutro"] = function() {
+  return Module["asm"]["_myoutro"].apply(null, arguments)
 };
 
 var establishStackSpace = Module["establishStackSpace"] = function() {
