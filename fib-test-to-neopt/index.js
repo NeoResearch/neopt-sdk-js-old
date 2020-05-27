@@ -33,6 +33,10 @@ export const myfib = mymodule._fib;
 
 export const myoutro = mymodule._myoutro;
 
+export const myoutro_denovo = mymodule._myoutro_denovo;
+
+
+
 export const cpp_SmartContract_Contract_CreateSignatureRedeemScript = mymodule.cpp_SmartContract_Contract_CreateSignatureRedeemScript;
 
 

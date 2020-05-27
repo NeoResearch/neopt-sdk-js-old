@@ -16,7 +16,23 @@
 #include <optional> // uptr - TODO REMOVE
 
 #include <emscripten/bind.h>
+
 #include <emscripten.h>
+
+
+EMSCRIPTEN_KEEPALIVE
+extern "C"
+int myoutro_denovo(int n) {
+  return n+50;
+}
+
+
+
+
+
+
+
+
 //
 using namespace emscripten;
 

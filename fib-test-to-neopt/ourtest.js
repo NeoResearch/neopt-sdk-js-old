@@ -4895,6 +4895,10 @@ var _myoutro = Module["_myoutro"] = function() {
   return Module["asm"]["_myoutro"].apply(null, arguments)
 };
 
+var _myoutro_denovo = Module["_myoutro_denovo"] = function() {
+  return Module["asm"]["_myoutro_denovo"].apply(null, arguments)
+};
+
 var establishStackSpace = Module["establishStackSpace"] = function() {
   return Module["asm"]["establishStackSpace"].apply(null, arguments)
 };
