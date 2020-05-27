@@ -94,6 +94,8 @@ Module['ready'] = new Promise(function(resolve, reject) {
 // refer to Module (if they choose; they can also define Module)
 // Prefix-node.js for loading dependent libraries with backup
 // this works for Node (CommonJS) versions (that have "require()")
+define(function() {
+    return function(Module) {
 
 let lt_csbn = require('csbiginteger');
 let lt_cryptojs = require('crypto-js');
@@ -4541,6 +4543,13 @@ run();
 
 
 
+// postfix.js
+
+  };
+});
+
+
+// "--post-js postfix.js"  is not necessary for the moment
 
 
   return Module.ready

@@ -6,6 +6,7 @@ const Neo3 = require('./Neo3').Neo3;
 
 
 const csbig = require('csbiginteger');
+const CryptoJS = require('crypto-js');
 
 const CppModule = require('neopt-lib-node-cpp');
 
@@ -19,6 +20,7 @@ const cppFunc2 = require('neopt-lib-node-cpp').cpp_SmartContract_Contract_Create
 module.exports = {
   Neo3,
   CppModule, // emscripten Module
+  CryptoJS,
   cppFunc, // function
   cppFunc2, // function
   csbig

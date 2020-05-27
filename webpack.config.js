@@ -9,8 +9,5 @@ module.exports = {
   },
   node: {
     fs: "empty"
-  },
-  externals :  {
-    'neopt-lib-cpp' : 'NeoptLib'
   }
 };
