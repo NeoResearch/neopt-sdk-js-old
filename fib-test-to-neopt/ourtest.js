@@ -28,7 +28,19 @@ var Module = typeof ourtest !== 'undefined' ? ourtest : {};
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// {{PRE_JSES}}
+// Prefix-node.js for loading dependent libraries with backup
+// this works for Node (CommonJS) versions (that have "require()")
+/*
+define(function() {
+    return function(Module) {
+        */
+
+let lt_csbn = require('csbiginteger');
+let lt_cryptojs = require('crypto-js');
+
+Module["csBN"] = lt_csbn.csBigInteger;
+Module["CryptoJS"] = lt_cryptojs;
+
 
 // Sometimes an existing Module object exists with properties
 // meant to overwrite the default module functionality. Here
@@ -4988,7 +5000,7 @@ Module['asm'] = asm;
 
 
 
-
+Module["ccall"] = ccall;
 Module["cwrap"] = cwrap;
 
 
@@ -4997,9 +5009,9 @@ Module["cwrap"] = cwrap;
 
 
 
+Module["UTF8ToString"] = UTF8ToString;
 
-
-
+Module["stringToUTF8"] = stringToUTF8;
 
 
 
