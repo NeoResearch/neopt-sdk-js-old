@@ -2,7 +2,7 @@
   "name": "lol",
   "scripts": {
     "build:codec_fib": "docker run --rm -v $(pwd):/src trzeci/emscripten em++ -O3 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 -s 'EXPORT_NAME=\"ourtest\"' -o ./ourtest.js ourtest.cpp",
-    "build:codec": "docker run --rm -v $(pwd):/src trzeci/emscripten em++ -O3 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 -s 'EXPORT_NAME=\"ourtest\"' -o ./ourtest.js neopt-test2.cpp",
+    "build:codec": "docker run --rm -v $(pwd):/src trzeci/emscripten em++ -I../thirdparty/neo3-cpp-core/src/ -O3 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 -s 'EXPORT_NAME=\"ourtest\"' -o ./ourtest.js neopt-test2.cpp",
     "build:bundle": "webpack",
     "build": "npm run build:codec && npm run build:bundle",
     "serve": "http-server",
