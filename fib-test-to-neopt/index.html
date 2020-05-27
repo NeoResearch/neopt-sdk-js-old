@@ -29,10 +29,12 @@
     var strJson = JSON.stringify(ecpoint);
     console.log(strJson);
   
+    var strInp = "                                                    ";
     //var vout = neoptFib.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
-    var vout = neoptFib.c_API_CreateSignatureRedeemScript(strJson); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
+    var bool_out = neoptFib.c_API_CreateSignatureRedeemScript(strJson, strInp); //Module.cpp_SmartContract_Contract_CreateSignatureRedeemScript(strJson);
     //var vout = neoptFib.Neo3.Contract_CreateSignatureRedeemScript(strJson);
 
-    console.log(vout);
+    console.log(bool_out);
+    console.log("str = '"+strInp+"'");
     }
   </script>
