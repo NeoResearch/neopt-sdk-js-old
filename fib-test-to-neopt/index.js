@@ -37,7 +37,7 @@ export const myoutro_denovo = mymodule._myoutro_denovo;
 
 export const cpp_myoutro_denovo2 = mymodule.cpp_myoutro_denovo2;
 
-export const c_API_CreateSignatureRedeemScript = mymodule.cwrap('c_API_CreateSignatureRedeemScript', 'bool', ['string', 'string']);
+export const c_API_CreateSignatureRedeemScript = mymodule.cwrap('c_API_CreateSignatureRedeemScript', 'string', ['string', 'string']);
 
 export const cpp_SmartContract_Contract_CreateSignatureRedeemScript = mymodule.cpp_SmartContract_Contract_CreateSignatureRedeemScript;
 

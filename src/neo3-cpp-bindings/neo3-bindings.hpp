@@ -27,10 +27,14 @@ int myoutro_denovo(int n) {
 }
 
 
+// DO NOT DELETE THIS IDEA:
+//EMSCRIPTEN_KEEPALIVE
+//extern "C"
+//const char* c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
 
 EMSCRIPTEN_KEEPALIVE
 extern "C"
-bool c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
+const char* c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
    std::cout << "PRINT cs_in  = '" << (int)cs_in << "'" << std::endl;
    std::cout << "PRINT cs_out = '" << (int)cs_out << "'" << std::endl;
    std::string sin(cs_in);
@@ -44,7 +48,7 @@ bool c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
    cs_out[1] = 'I';
    sout = s_out;
   std::cout << "PRINT s='" << sout << "'" << std::endl;
-  return true;
+  return cs_out;
 }
 
 
