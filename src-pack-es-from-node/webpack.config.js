@@ -1,6 +1,6 @@
 module.exports = {
   mode : 'production',
-  entry : './neopt-sdk/index.js',
+  entry : './src/neopt-sdk/index.js',
   output: {
     library: 'neopt',
     libraryTarget: 'umd',

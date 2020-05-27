@@ -76,20 +76,16 @@ run_js_node:
 	cp neopt-lib-package.json build/neopt-lib-cpp-node/package.json
 	@echo ""
 	@echo "installing neopt-lib-cpp-node locally"
-	npm install
+	cd src && npm install
 	@echo ""
 	@echo "REAL run now..."
-	node ./src/neopt_test.js
+	cd src && node ./neopt_test.js
 
-dist:
-	@echo "We may need to comment the following line 96 in './build/neopt-lib-cpp-node/neopt-lib.js'"
-	@echo "//if (!nodeFS) nodeFS = require('fs');"
-	npm run build
+dist-sdk:
+	cd src && make dist
 
 test:
 	npm test
-
-.PHONY: dist
 
 vendor: update_submodules cpp_core_deps_js
 	@echo "Finished 'make vendor' successfully"

@@ -4,8 +4,8 @@
   "description": "neopt-sdk.js: Neo (Portable for all Things) SDK in JS",
   "main": "./neopt-sdk/index.js",
   "scripts": {
-    "test": "../node_modules/.bin/jest --coverage",
-    "build": "npm install && ../node_modules/.bin/webpack --display-optimization-bailout --display verbose && ../node_modules/.bin/webpack --config webpack-es6.config.js"
+    "test": "./node_modules/.bin/jest --coverage",
+    "build-sdk": "npm install && ./node_modules/.bin/webpack --display-optimization-bailout --display verbose && ./node_modules/.bin/webpack --config webpack-es6.config.js"
   },
   "repository": {
     "type": "git",
