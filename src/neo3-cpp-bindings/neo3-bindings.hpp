@@ -34,6 +34,8 @@ bool c_API_CreateSignatureRedeemScript(const char* cs_in, char* cs_out) {
    std::cout << "PRINT cs_in = '" << (int)cs_in << "'" << std::endl;
    std::string s(cs_in);
    std::cout << "PRINT s='" << s << "'" << std::endl;
+   s = "{\"X\":\"ca30ef7722574ce16e2fce6cf36a05f64786d83f8282ce3db90067a32e6852cc00\",\"Y\":\"b4319c6cf6adac5f20ea7f9aea8c7469ea5257574f3b0463fdd10f9db1afc1b300\",\"curve\":\"secp256r1\"}";
+   std::cout << "PRINT s='" << s << "'" << std::endl;
    std::string s_out = Neo::SmartContract::Contract::API_CreateSignatureRedeemScript(s);
    for(unsigned i=0; i<s_out.size(); i++)
       cs_out[i] = s_out[i];
