@@ -213,6 +213,13 @@ cpp_Contract_CreateSignatureRedeemScript_XY2(std::map<bool, vbyte> point)
 
 // ================================
 
+std::string
+cpp_SmartContract_Contract_CreateSignatureRedeemScript(std::string s)
+{
+   return Neo::SmartContract::Contract::API_CreateSignatureRedeemScript(s);
+}
+
+/*
 // these methods are provided to the external world (for nodejs, for example)
 EMSCRIPTEN_BINDINGS(my_module)
 {
@@ -242,5 +249,6 @@ EMSCRIPTEN_BINDINGS(my_module)
    //
    // Contract.jsapi.hpp
    // vbyte cpp_Contract_CreateSignatureRedeemScript(jsapi_ECPoint point)
-   emscripten::function("cpp_SmartContract_Contract_CreateSignatureRedeemScript", &Neo::SmartContract::Contract::API_CreateSignatureRedeemScript);
+   //emscripten::function("cpp_SmartContract_Contract_CreateSignatureRedeemScript", &Neo::SmartContract::Contract::API_CreateSignatureRedeemScript);
 }
+*/
