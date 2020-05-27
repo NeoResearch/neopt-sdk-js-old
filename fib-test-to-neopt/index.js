@@ -14,11 +14,13 @@
 import ourtest from './ourtest.js';
 import ourtestWasm from './ourtest.wasm';
 
+
+
 // Since webpack will change the name and potentially the path of the 
 // `.wasm` file, we have to provide a `locateFile()` hook to redirect
 // to the appropriate URL.
 // More details: https://kripken.github.io/emscripten-site/docs/api_reference/module.html
-const module = ourtest({
+const mymodule = ourtest({
   locateFile(path) {
     if(path.endsWith('.wasm')) {
       return ourtestWasm;
@@ -27,7 +29,31 @@ const module = ourtest({
   }
 });
 
+export const myfib = mymodule._fib;
 
-module.onRuntimeInitialized = () => {
-  console.log(module._fib(12));
+mymodule.onRuntimeInitialized = () => {
+  console.log(mymodule._fib(12));
 };
+
+
+//const Neo3 = require('./Neo3').Neo3;
+const csbig = require('csbiginteger');
+const CryptoJS = require('crypto-js');
+//const CppModule = require('../../build/neopt-lib-cpp-node/neopt-lib-cpp-node');
+// Can't resolve 'env' in '/home/imcoelho/git-reps/neopt-sdk-js/build/neopt-lib-cpp-node'
+//const cppFunc = require('../build/neopt-lib-cpp-node/neopt-lib-cpp-node').cpp_SmartContract_Contract_CreateSignatureRedeemScript;
+//const cppFunc2 = require('../build/neopt-lib-cpp-node/neopt-lib-cpp-node').cpp_SmartContract_Contract_CreateSignatureRedeemScript2;
+
+
+//module.exports = {
+  //Neo3,
+  //CppModule, // emscripten Module
+
+  //CryptoJS,
+  //myfib,
+  
+  //cppFunc, // function
+  //cppFunc2, // function
+
+  //csbig
+//}

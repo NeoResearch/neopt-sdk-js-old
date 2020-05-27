@@ -20,7 +20,9 @@ module.exports = {
   entry: "./index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    library: 'neoptFib',
+    libraryTarget: 'umd'
   },
   // This is necessary due to the fact that emscripten puts both Node and web
   // code into one file. The node part uses Node’s `fs` module to load the wasm
