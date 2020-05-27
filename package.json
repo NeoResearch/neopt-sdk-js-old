@@ -30,7 +30,7 @@
     "crypto-js": "^4.0.0",
     "csbiginteger": "^4.0.3",
     "elliptic": "^6.5.2",
-    "neopt-lib-node-cpp": "file:build/neopt-lib-node-cpp",
+    "neopt-lib-cpp-node": "file:build/neopt-lib-cpp-node",
     "webpack": "^4.43.0"
   }
 }

@@ -99,11 +99,11 @@ define(function() {
     return function(Module) {
         */
 
-let lt_csbn = require('csbiginteger');
-let lt_cryptojs = require('crypto-js');
+//import csbiginteger from "https://unpkg.com/csbiginteger/dist/csbiginteger-es6.mjs";
+//import CryptoJS from 'crypto-js';
 
-Module["csBN"] = lt_csbn.csBigInteger;
-Module["CryptoJS"] = lt_cryptojs;
+//Module["csBN"] = csbiginteger.csBigInteger;
+//Module["CryptoJS"] = CryptoJS;
 
 
 // Sometimes an existing Module object exists with properties

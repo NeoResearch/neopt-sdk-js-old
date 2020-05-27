@@ -7,7 +7,7 @@
 //const BN = require('bn.js');
 //
 // load neo3-cpp-core library dependency (wasm)
-let libNeo3cpp = require('neopt-lib-node-cpp');
+let libNeo3cpp = require('neopt-lib-cpp-node');
 
 //
 // "injecting" modules (TODO: improve)
