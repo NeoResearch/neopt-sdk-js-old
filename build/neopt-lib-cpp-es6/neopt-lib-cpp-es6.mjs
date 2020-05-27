@@ -3807,6 +3807,13 @@ var _myteststr = Module["_myteststr"] = function() {
 };
 
 /** @type {function(...*):?} */
+var _fib = Module["_fib"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["fib"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
 var _malloc = Module["_malloc"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');

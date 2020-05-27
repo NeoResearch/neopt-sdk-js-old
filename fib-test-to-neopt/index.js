@@ -36,7 +36,7 @@ mymodule.onRuntimeInitialized = () => {
 };
 
 
-//const Neo3 = require('./Neo3').Neo3;
+//export const Neo3 = require('../src/neopt-sdk/Neo3').Neo3; // THIS CRASHES!!
 export const csbig = require('csbiginteger');
 export const CryptoJS = require('crypto-js');
 //const CppModule = require('../../build/neopt-lib-cpp-node/neopt-lib-cpp-node');

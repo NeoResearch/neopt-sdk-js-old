@@ -1,6 +1,7 @@
 #include "./neo3-cpp-bindings/neo3-bindings.hpp"
 #include <neo3-cpp-core/core_imports.h>
 
+
 int
 main()
 {
