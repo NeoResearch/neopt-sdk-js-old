@@ -5,7 +5,7 @@
   "main": "src/neopt-sdk/index.js",
   "scripts": {
     "test": "./node_modules/.bin/jest --coverage",
-    "build": "npm install && ./node_modules/.bin/webpack --display verbose && ./node_modules/.bin/webpack --config webpack-es6.config.js"
+    "build": "npm install && ./node_modules/.bin/webpack --display-optimization-bailout --display verbose && ./node_modules/.bin/webpack --config webpack-es6.config.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
   "dependencies": {
     "bn.js": "^4.11.8",
     "crypto-js": "^4.0.0",
-    "csBigInteger.js": "file:thirdparty/csBigInteger.js",
     "csbiginteger": "^4.0.3",
     "elliptic": "^6.5.2",
     "neopt-lib-node-cpp": "file:build/neopt-lib-node-cpp",
