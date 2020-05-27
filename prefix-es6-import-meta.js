@@ -10,3 +10,7 @@ define(function() {
 
 //Module["csBN"] = csbiginteger.csBigInteger;
 //Module["CryptoJS"] = CryptoJS;
+
+
+// some prefer: var _scriptDir = (typeof document !== 'undefined' && document.currentScript) ? document.currentScript.src : undefined;
+// over: var _scriptDir = import.meta.url;
