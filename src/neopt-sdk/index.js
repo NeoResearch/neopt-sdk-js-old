@@ -6,24 +6,7 @@ const Neo3 = require('./Neo3').Neo3;
 
 const csbig = require('csbiginteger');
 
-//const CppModule = require('neopt-lib-node-cpp');
-
-
-import myMod from './neopt-lib-cpp.js';
-import myModWasm from './neopt-lib-cpp.wasm';
-const module = myMod({
-  locateFile(path) {
-    if(path.endsWith('.wasm')) {
-      return myModWasm;
-    }
-    return path;
-  }
-});
-
-
-module.onRuntimeInitialized = () => {
-  console.log(module._mytest(12));
-};
+const CppModule = require('neopt-lib-node-cpp');
 
 //console.log("MODULE:"+CppModule);
 //console.log("FUNC: "+CppModule._mytest);
@@ -31,7 +14,7 @@ module.onRuntimeInitialized = () => {
 
 module.exports = {
   Neo3,
-  //CppModule, // emscripten Module
+  CppModule, // emscripten Module
   csbig
 }
 
