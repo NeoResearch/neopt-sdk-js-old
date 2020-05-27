@@ -22,15 +22,14 @@
   },
   "homepage": "https://github.com/NeoResearch/neopt-sdk.js#readme",
   "devDependencies": {
-    "jest": "^26.0.1",
-    "webpack-cli": "^3.3.11"
+    "exports-loader": "^0.7.0",
+    "file-loader": "^1.1.11",
+    "http-server": "^0.11.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "bn.js": "^4.11.8",
-    "crypto-js": "^4.0.0",
-    "csbiginteger": "^4.0.3",
-    "elliptic": "^6.5.2",
-    "neopt-lib-cpp-node": "file:../build/neopt-lib-cpp-node",
-    "webpack": "^4.43.0"
+    "crypto-js": "",
+    "csbiginteger": ""
   }
 }
