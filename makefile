@@ -66,17 +66,16 @@ build_common_js:  ./src/neopt-test.cpp
 	#em++ -Ilibs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./jstest.cpp -I$(NEO3_SRC) --js-library src/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/librarytest.js
 	#@echo "Building HTML version"
 	#em++ -s WASM=0 -s STRICT=1 -s FILESYSTEM=0 -g4 --emrun -Ithirdparty/neo3-cpp-core/libs/ --bind $(EMCC_EXPORTED_FUNCTIONS) $(EMCC_FLAGS) ./neopt-test.cpp -I$(NEO3_SRC) --js-library $(NEO3_SRC)/libcore-js/libcore_exports.js --js-library $(BN_JS) -o ./build/output.html -s ASSERTIONS=1 # -s MODULARIZE=1 -s 'EXPORT_NAME="Neo3CPP"' -s ASSERTIONS=1
-
-
-run_js_node:
-	@echo
-	@echo "======= testing 'node_test.js' ======="
-	@echo
 	@echo "creating package.json for subproject neopt-lib-cpp-node"
 	cp neopt-lib-package.json build/neopt-lib-cpp-node/package.json
 	@echo ""
 	@echo "installing neopt-lib-cpp-node locally"
 	cd src && npm install
+
+run_js_node:
+	@echo
+	@echo "======= testing 'node_test.js' ======="
+	@echo
 	@echo ""
 	@echo "REAL run now..."
 	cd src && node ./neopt_test.js
