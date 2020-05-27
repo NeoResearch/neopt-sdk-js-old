@@ -35,13 +35,13 @@ module.exports = {
       // load these files correctly (provided the global’s name is the same
       // as the file name).
       {
-        test: /fibonacci\.js$/,
+        test: /ourtest\.js$/,
         loader: "exports-loader"
       },
       // wasm files should not be processed but just be emitted and we want
       // to have their public URL.
       {
-        test: /fibonacci\.wasm$/,
+        test: /ourtest\.wasm$/,
         type: "javascript/auto",
         loader: "file-loader",
         options: {

@@ -11,17 +11,17 @@
  * limitations under the License.
  */
 
-import fibonacci from './fibonacci.js';
-import fibonacciModule from './fibonacci.wasm';
+import ourtest from './ourtest.js';
+import ourtestWasm from './ourtest.wasm';
 
 // Since webpack will change the name and potentially the path of the 
 // `.wasm` file, we have to provide a `locateFile()` hook to redirect
 // to the appropriate URL.
 // More details: https://kripken.github.io/emscripten-site/docs/api_reference/module.html
-const module = fibonacci({
+const module = ourtest({
   locateFile(path) {
     if(path.endsWith('.wasm')) {
-      return fibonacciModule;
+      return ourtestWasm;
     }
     return path;
   }
