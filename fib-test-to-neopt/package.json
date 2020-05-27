@@ -1,0 +1,17 @@
+{
+  "name": "lol",
+  "scripts": {
+    "build:codec": "docker run --rm -v $(pwd):/src trzeci/emscripten emcc -O3 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\"]' -s ALLOW_MEMORY_GROWTH=1 -s MODULARIZE=1 -s 'EXPORT_NAME=\"fibonacci\"' -o ./fibonacci.js fibonacci.c",
+    "build:bundle": "webpack",
+    "build": "npm run build:codec && npm run build:bundle",
+    "serve": "http-server",
+    "start": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "exports-loader": "^0.7.0",
+    "file-loader": "^1.1.11",
+    "http-server": "^0.11.1",
+    "webpack": "^4.8.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
